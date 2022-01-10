@@ -1,12 +1,16 @@
 import { getSession } from 'next-auth/client'
 import Nav from '../components/Nav'
+import TodoInput from '../components/TodoInput'
 
 export default function Home({ session }) {
   return (
     <>
-      <div className="border bg-slate-50">
+      <div className="border bg-gray-900">
         <Nav />
       </div>
+      <main className="mx-auto max-w-4xl px-5">
+        <TodoInput />
+      </main>
     </>
   )
 }
@@ -14,7 +18,6 @@ export default function Home({ session }) {
 
 export async function getServerSideProps(context) {
   const session = await getSession(context)
-  console.log('session', session)
   if (!session) {
     return {
       redirect: {

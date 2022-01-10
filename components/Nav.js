@@ -1,7 +1,5 @@
 
 import { useSession, signOut } from 'next-auth/client'
-import Image from 'next/image'
-import Logo from '../images/logo-sm.png'
 
 export default function Nav() {
     const [session, loading] = useSession()
@@ -10,13 +8,12 @@ export default function Nav() {
     return (
         <nav className="h-14 mx-auto max-w-4xl flex items-center justify-between px-5">
             <div className="flex items-center">
-                <Image src={Logo} alt="logo" width={40} height={40} />
-                <span>Next Auth</span>
+                <h3 className="text-md font-bold text-blue-400">Next Auth</h3>
             </div>
-            <div className="flex items-center gap-4">
-                <img className="rounded-full" src={session.user.image} width={40} height={40} rounded-fill />
-                <h5>{session.user.name}</h5>
-                <button className="border p-1 rounded-md border-orange-500 text-orange-500" onClick={() => signOut()}> Cerrar sesión </button>
+            <div className="flex items-center space-x-3">
+                {session.user.image && <img className="rounded-full border-2" src={session.user.image} width={40} height={40} rounded-fill />}
+                <h5 className="text-gray-300">{session.user.name}</h5>
+                <button className="border-none p-1 bg-blue-600 rounded-md hover:opacity-80 text-white" onClick={() => signOut()}> Cerrar sesión </button>
             </div>
 
         </nav>
